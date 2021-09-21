@@ -25,8 +25,17 @@ config :opensea_prices, OpenseaPricesWeb.Endpoint,
       "node_modules/webpack/bin/webpack.js",
       "--mode",
       "development",
-      "--watch-stdin",
+      "--watch",
       cd: Path.expand("../assets", __DIR__)
+    ],
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--mode",
+      "development",
+      "--watch",
+      "--config",
+      "node_modules/@vue/cli-service/webpack.config.js",
+      cd: Path.expand("../app", __DIR__)
     ]
   ]
 

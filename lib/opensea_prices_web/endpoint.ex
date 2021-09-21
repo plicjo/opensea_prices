@@ -21,10 +21,17 @@ defmodule OpenseaPricesWeb.Endpoint do
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/",
+    at: "/internal",
     from: :opensea_prices,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
+
+  plug Plug.Static,
+    at: "/",
+    from: {:opensea_prices, "priv/app"},
+    gzip: false,
+    only: ~w(index.html manifest.json service-worker.js css fonts img js favicon.ico robots.txt),
+    only_matching: ["precache-manifest"]
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
