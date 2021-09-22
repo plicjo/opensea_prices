@@ -11,6 +11,8 @@ defmodule OpenseaPricesWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+
+    resources "/api/assets", OpenseaPricesWeb.AssetController, only: [:index]
   end
 
   scope "/", OpenseaPricesWeb do

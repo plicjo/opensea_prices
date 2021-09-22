@@ -11,6 +11,6 @@ defmodule OpenseaPrices.OpenseaApiClient do
   # Sale price returns a 500
   def get_assets(query_params \\ [limit: 10, order_by: "sale_count", order_direction: "desc"]) do
     {:ok, %Tesla.Env{body: %{"assets" => assets}}} = get("https://api.opensea.io/api/v1/assets", query: query_params)
-    Enum.map(assets, fn asset -> asset["name"] end)
+    assets
   end
 end
