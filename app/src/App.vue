@@ -1,27 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div v-for="asset in assets" v-bind:key="asset.name">
+      <h1>{{ asset.name }}</h1>
+      <p>{{ asset.last_sale }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-console.log('hi')
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  data() {
+    return {
+      assets: [],
+    };
+  },
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  methods: {
+    async getAssets() {
+      const response = await this.axios.get("http://localhost:4000/api/assets");
+      this.assets = response.data.assets;
+    },
+  },
+
+  created() {
+    this.getAssets();
+  },
+};
+</script>
