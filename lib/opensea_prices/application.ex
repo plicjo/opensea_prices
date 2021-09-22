@@ -15,7 +15,7 @@ defmodule OpenseaPrices.Application do
       {Phoenix.PubSub, name: OpenseaPrices.PubSub},
       # Start the Endpoint (http/https)
       OpenseaPricesWeb.Endpoint,
-      OpenseaPrices.Workers
+      {OpenseaPrices.Worker, []},
       # Start a worker by calling: OpenseaPrices.Worker.start_link(arg)
       # {OpenseaPrices.Worker, arg}
     ]
